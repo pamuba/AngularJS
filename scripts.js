@@ -1,10 +1,16 @@
 var app = angular.module("app", []);
 
-app.controller("AppCtrl", function ($scope, $timeout) {
+app.controller("AppCtrl", function ($scope, $q) {
   function add(x, y) {
-    return $timeout(function () { //$timeout by default returns a promise
-      return (x + y);
+    var q = $q.defer()//returns the angular promise
+    setTimeout(function () { //$timeout by default returns a promise
+      var result = x+y;
+      if(result >= 0)
+       {q.resolve(x + y);}
+      else
+       {q.reject('negative value: '+result)}
     }, 100);
+    return q.promise;
   }
 
   var startTime = Date.now();
@@ -15,8 +21,11 @@ app.controller("AppCtrl", function ($scope, $timeout) {
           return add(result, 3);//.then block always return a promise
         })
         .then(function(result){
-          return add(result, 1);
+          return add(result, -10);
         })
+        // .then(function(result){
+        //   return Array(result).join('*');//can return any data type
+        // })
         .then(function(result){
           $scope.result = result;
           $scope.elapsedTime = Date.now() - startTime;
