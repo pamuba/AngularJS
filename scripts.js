@@ -18,10 +18,10 @@ app.controller("AppCtrl", function ($scope, $q) {
   //alternate way -- promise chaining
   add(5,2)
         .then(function(result){
-          return add(result, 3);//.then block always return a promise
+          return add(result, -10);//.then block always return a promise
         })
         .then(function(result){
-          return add(result, -10);
+          return add(result, 1);
         })
         // .then(function(result){
         //   return Array(result).join('*');//can return any data type
@@ -29,6 +29,9 @@ app.controller("AppCtrl", function ($scope, $q) {
         .then(function(result){
           $scope.result = result;
           $scope.elapsedTime = Date.now() - startTime;
+        })
+        .catch(function(failure){
+          $scope.failure = failure;
         })
 
   // add(5, 2, function (result) {
