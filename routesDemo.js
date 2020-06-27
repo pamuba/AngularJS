@@ -15,7 +15,13 @@ app.config(['$routeProvider', function($routeProvider){
         template:"<strong>This is DEFAULT message</strong>"
     }),
     $routeProvider.when('/third-msg',{
-        redirectTo:"/second-msg"
+        // redirectTo:"/second-msg"
+        redirectTo:
+            function(){
+                alert("Sorry");
+                return "/second-msg"
+                      
+        }
     })
     $routeProvider.otherwise({
         template:"<strong>No Content Available</strong>"
