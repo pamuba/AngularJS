@@ -6,6 +6,15 @@
     <script src="direc.js"></script>
 </head>
 <body ng-app="app">
-    <div ng-controller="emp"></div>
+
+    <script type="text/ng-template" id="my-info-msg.html">
+        <strong>{{msg}}</strong>
+    </script>
+
+    <div ng-controller="emp">
+        <div my-info-msg>
+            
+        </div>
+    </div>
 </body>
 </html>
