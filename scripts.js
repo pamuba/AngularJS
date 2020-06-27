@@ -28,10 +28,13 @@ app.controller("AppCtrl", function ($scope, $q) {
         // })
         .then(function(result){
           $scope.result = result;
-          $scope.elapsedTime = Date.now() - startTime;
+         
         })
         .catch(function(failure){
           $scope.failure = failure;
+        })
+        .finally(function(){
+          $scope.elapsedTime = Date.now() - startTime;
         })
 
   // add(5, 2, function (result) {
